@@ -1,6 +1,6 @@
-package com.amaraa.main.hud;
+package com.amaraa.main.game.hud;
 
-import com.amaraa.main.Game;
+import com.amaraa.main.game.Game;
 
 import java.awt.*;
 

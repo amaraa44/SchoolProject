@@ -1,8 +1,9 @@
-package com.amaraa.main.keymanager;
+package com.amaraa.main.game.keymanager;
 
-import com.amaraa.main.objects.GameObject;
-import com.amaraa.main.Handler;
-import com.amaraa.main.objects.ID;
+import com.amaraa.main.game.objects.GameObject;
+import com.amaraa.main.game.Handler;
+import com.amaraa.main.game.objects.ID;
+import com.amaraa.main.game.objects.weapon.Laser;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -33,6 +34,8 @@ public class KeyManager extends KeyAdapter {
             if (tempObject.getId() == ID.Player) {
                 if (key == KeyEvent.VK_D) tempObject.setVelX(+4);
                 if (key == KeyEvent.VK_A) tempObject.setVelX(-4);
+
+                if (key == KeyEvent.VK_SPACE) handler.addObject(new Laser(tempObject.getX(),tempObject.getY(),ID.Laser,handler));
 
             }
         }

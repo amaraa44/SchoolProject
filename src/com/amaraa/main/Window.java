@@ -1,5 +1,7 @@
 package com.amaraa.main;
 
+import com.amaraa.main.game.Game;
+
 import javax.swing.JFrame;
 import java.awt.Canvas;
 import java.awt.Dimension;

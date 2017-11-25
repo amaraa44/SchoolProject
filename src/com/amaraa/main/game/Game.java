@@ -1,10 +1,10 @@
-package com.amaraa.main;
+package com.amaraa.main.game;
 
-import com.amaraa.main.hud.HUD;
-import com.amaraa.main.keymanager.KeyManager;
-import com.amaraa.main.objects.ID;
-import com.amaraa.main.objects.entities.BasicEnemy;
-import com.amaraa.main.objects.entities.Player;
+import com.amaraa.main.Window;
+import com.amaraa.main.game.hud.HUD;
+import com.amaraa.main.game.keymanager.KeyManager;
+import com.amaraa.main.game.objects.ID;
+import com.amaraa.main.game.objects.entities.BasicEnemy;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -26,8 +26,6 @@ public class Game extends Canvas implements Runnable {
 
     public Game() {
 
-        //TODO: https://www.youtube.com/watch?v=5ufOPX8N1Rg
-
         handler = new Handler();
         this.addKeyListener(new KeyManager(handler));
 
@@ -35,18 +33,10 @@ public class Game extends Canvas implements Runnable {
 
         hud = new HUD();
 
-        r = new Random();
         System.out.println(WIDTH + " " + HEIGHT);
 
         gamePlay = new GamePlay(handler, this);
 
-//        handler.addObject(new Player(WIDTH/2-32,HEIGHT/5*4-32, ID.Player, handler));
-//        for (int i = 0; i < 10; i++) {
-//            handler.addObject(new BasicEnemy(r.nextInt(WIDTH-48),-31, ID.BasicEnemy));
-//        }
-//
-//        handler.addObject(new BasicEnemy(r.nextInt(WIDTH-64),-31, ID.BasicEnemy));
-//        handler.addObject(new BasicEnemy(r.nextInt(WIDTH-64),-31, ID.BasicEnemy));
 
     }
 
@@ -100,7 +90,6 @@ public class Game extends Canvas implements Runnable {
         handler.tick();
         hud.tick();
         gamePlay.tick();
-        spawner();
     }
 
     private void render() {
@@ -123,11 +112,6 @@ public class Game extends Canvas implements Runnable {
         bs.show();
     }
 
-    private void spawner() {
-        if (frames == 500) {
-            handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 48), -31, ID.BasicEnemy));
-        }
-    }
 
     public static int clamp(int var, int min, int max) {
         if (var <= min) {
@@ -143,9 +127,4 @@ public class Game extends Canvas implements Runnable {
         return frames;
     }
 
-    public static void main(String[] args) {
-
-        new Game();
-
-    }
 }

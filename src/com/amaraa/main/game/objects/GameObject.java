@@ -1,4 +1,4 @@
-package com.amaraa.main.objects;
+package com.amaraa.main.game.objects;
 
 import java.awt.*;
 

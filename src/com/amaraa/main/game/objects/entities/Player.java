@@ -1,10 +1,10 @@
-package com.amaraa.main.objects.entities;
+package com.amaraa.main.game.objects.entities;
 
-import com.amaraa.main.Game;
-import com.amaraa.main.hud.HUD;
-import com.amaraa.main.objects.GameObject;
-import com.amaraa.main.Handler;
-import com.amaraa.main.objects.ID;
+import com.amaraa.main.game.Game;
+import com.amaraa.main.game.hud.HUD;
+import com.amaraa.main.game.objects.GameObject;
+import com.amaraa.main.game.Handler;
+import com.amaraa.main.game.objects.ID;
 
 import java.awt.*;
 
@@ -34,6 +34,13 @@ public class Player extends GameObject {
         x = Game.clamp(x, 0, Game.WIDTH - 48);
 
         collision();
+        weapon();
+
+    }
+
+    private void weapon() {
+
+
 
     }
 
