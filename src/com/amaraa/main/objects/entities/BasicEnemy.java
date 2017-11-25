@@ -5,18 +5,19 @@ import com.amaraa.main.objects.ID;
 
 import java.awt.*;
 
-public class Player extends GameObject {
+public class BasicEnemy extends GameObject {
 
     private int width = 32, height = 32;
 
-    public Player(int x, int y, ID id) {
+    public BasicEnemy(int x, int y, ID id) {
         super(x, y, id);
     }
+
+
     boolean ize = false;
     public void tick() {
 
-        x += velX;
-        y += velY;
+
 
         if (!ize){
             System.out.println(id + ":" + " X: " + x + ", Y: " + y);
@@ -27,7 +28,7 @@ public class Player extends GameObject {
     }
 
     public void render(Graphics g) {
-        g.setColor(Color.white);
+        g.setColor(Color.red);
         g.fillRect(x,y,width,height);
     }
 }
