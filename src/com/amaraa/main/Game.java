@@ -1,6 +1,8 @@
 package com.amaraa.main;
 
+import com.amaraa.main.hud.HUD;
 import com.amaraa.main.keymanager.KeyManager;
+import com.amaraa.main.objects.GameObject;
 import com.amaraa.main.objects.Handler;
 import com.amaraa.main.objects.ID;
 import com.amaraa.main.objects.entities.BasicEnemy;
@@ -20,6 +22,7 @@ public class Game extends Canvas implements Runnable {
     private Random r;
 
     private Handler handler;
+    private HUD hud;
 
     public Game(){
 
@@ -30,10 +33,18 @@ public class Game extends Canvas implements Runnable {
 
         new Window(WIDTH, HEIGHT, "The game", this);
 
+        hud = new HUD();
+
         r = new Random();
         System.out.println(WIDTH + " " + HEIGHT);
+
         handler.addObject(new Player(WIDTH/2-32,HEIGHT/5*4-32, ID.Player));
-        handler.addObject(new BasicEnemy(r.nextInt(WIDTH-64),-31, ID.BasicEnemy));
+        for (int i = 0; i < 10; i++) {
+            handler.addObject(new BasicEnemy(r.nextInt(WIDTH-48),-31, ID.BasicEnemy));
+        }
+//
+//        handler.addObject(new BasicEnemy(r.nextInt(WIDTH-64),-31, ID.BasicEnemy));
+//        handler.addObject(new BasicEnemy(r.nextInt(WIDTH-64),-31, ID.BasicEnemy));
 
     }
 
@@ -82,6 +93,7 @@ public class Game extends Canvas implements Runnable {
     }
     private void tick(){
         handler.tick();
+        hud.tick();
     }
     private void render(){
         BufferStrategy bs = this.getBufferStrategy();
@@ -95,9 +107,21 @@ public class Game extends Canvas implements Runnable {
         g.fillRect(0,0,WIDTH, HEIGHT);
 
         handler.render(g);
+        hud.render(g);
 
         g.dispose();
         bs.show();
+    }
+
+    public static int clamp(int var, int min, int max){
+        if (var <= min){
+            return min;
+        }else if (var >= max){
+            return max;
+        }
+        else {
+            return var;
+        }
     }
 
     public static void main(String[] args){

@@ -1,5 +1,6 @@
 package com.amaraa.main.objects.entities;
 
+import com.amaraa.main.Game;
 import com.amaraa.main.objects.GameObject;
 import com.amaraa.main.objects.ID;
 
@@ -23,6 +24,11 @@ public class Player extends GameObject {
             System.out.println(id + ":" + " Width: " + width + " Height: " + height);
             ize = true;
         }
+
+        // I DON'T UNDERSTAND WHY -48, BUT -48... :/
+        x = Game.clamp(x, 0, Game.WIDTH-48);
+
+
 
     }
 
