@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-Main-Class: com.amaraa.main.game.Game
+Main-Class: com.amaraa.main.GameClient
 

@@ -2,6 +2,7 @@ package com.amaraa.main.game.objects.weapon;
 
 import com.amaraa.main.game.Game;
 import com.amaraa.main.game.Handler;
+import com.amaraa.main.game.hud.HUD;
 import com.amaraa.main.game.objects.GameObject;
 import com.amaraa.main.game.objects.ID;
 
@@ -46,6 +47,7 @@ public class Laser extends GameObject{
             GameObject tempObject = handler.objects.get(i);
             if (tempObject.getId() == ID.BasicEnemy) {
                 if (getBounds().intersects(tempObject.getBounds())) {
+                    HUD.SCORE += 10;
                     handler.removeObject(this);
                     handler.removeObject(tempObject);
                 }

@@ -29,7 +29,7 @@ public class Game extends Canvas implements Runnable {
         handler = new Handler();
         this.addKeyListener(new KeyManager(handler));
 
-        new Window(WIDTH, HEIGHT, "The game", this);
+        new Window(WIDTH, HEIGHT, "Space shooter", this);
 
         hud = new HUD();
 
