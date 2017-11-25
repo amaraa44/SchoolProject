@@ -9,7 +9,6 @@ import java.awt.event.KeyEvent;
 
 
 /**
- *
  * MyDbManager.executeSQL("INSERT INTO USERS VALUES(null, 'nev');");
  * MyDbManager.insertInToUsers("ize");
  * MyDbManager.deleteFromUsers("nev");
@@ -17,9 +16,8 @@ import java.awt.event.KeyEvent;
  * MyDbManager.updateNameInUsers(3,"nev");
  * MyDbManager.selectFromUsers(10);
  * System.out.println(MyDbManager.getUsersName(1));
- *
- * */
-public class KeyManager extends KeyAdapter{
+ */
+public class KeyManager extends KeyAdapter {
 
     private Handler handler;
 
@@ -32,7 +30,7 @@ public class KeyManager extends KeyAdapter{
         for (int i = 0; i < handler.objects.size(); i++) {
             GameObject tempObject = handler.objects.get(i);
 
-            if (tempObject.getId() == ID.Player){
+            if (tempObject.getId() == ID.Player) {
                 if (key == KeyEvent.VK_D) tempObject.setVelX(+4);
                 if (key == KeyEvent.VK_A) tempObject.setVelX(-4);
 
@@ -46,7 +44,7 @@ public class KeyManager extends KeyAdapter{
         for (int i = 0; i < handler.objects.size(); i++) {
             GameObject tempObject = handler.objects.get(i);
 
-            if (tempObject.getId() == ID.Player){
+            if (tempObject.getId() == ID.Player) {
                 if (key == KeyEvent.VK_D) tempObject.setVelX(0);
                 if (key == KeyEvent.VK_A) tempObject.setVelX(0);
             }

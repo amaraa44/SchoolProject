@@ -21,8 +21,8 @@ public class GamePlay {
         game();
     }
 
-    public void game(){
-        handler.addObject(new Player(Game.WIDTH/2-32,Game.HEIGHT/5*4-32, ID.Player, handler));
+    public void game() {
+        handler.addObject(new Player(Game.WIDTH / 2 - 32, Game.HEIGHT / 5 * 4 - 32, ID.Player, handler));
 //        for (int i = 0; i < 10; i++) {
 //            Random r = new Random();
 //            handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH-48),-31, ID.BasicEnemy));
@@ -30,22 +30,23 @@ public class GamePlay {
 
     }
 
-    public void tick(){
+    public void tick() {
         spawnEnemy();
     }
 
-    public void render(Graphics g){
+    public void render(Graphics g) {
 
     }
 
     private double time;
     private double lastTime = 0;
-    private void spawnEnemy(){
-        time = System.nanoTime()/1000000000;
-        if (time > lastTime){
+
+    private void spawnEnemy() {
+        time = System.nanoTime() / 1000000000;
+        if (time > lastTime) {
             lastTime = time;
             for (int i = 0; i < r.nextInt(4); i++) {
-                handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH-48),-31,ID.BasicEnemy));
+                handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 48), -31, ID.BasicEnemy));
             }
         }
     }

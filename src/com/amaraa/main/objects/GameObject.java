@@ -7,7 +7,7 @@ public abstract class GameObject {
     protected int x, y;
     protected ID id;
     protected int velX, velY;
-    protected static final int SPEED  = 1;
+    protected static final int SPEED = 1;
 
     public GameObject(int x, int y, ID id) {
         this.x = x;
@@ -16,7 +16,9 @@ public abstract class GameObject {
     }
 
     public abstract void tick();
+
     public abstract void render(Graphics g);
+
     public abstract Rectangle getBounds();
 
     public int getX() {

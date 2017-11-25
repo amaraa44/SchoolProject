@@ -24,7 +24,7 @@ public class Game extends Canvas implements Runnable {
     private HUD hud;
     private GamePlay gamePlay;
 
-    public Game(){
+    public Game() {
 
         //TODO: https://www.youtube.com/watch?v=5ufOPX8N1Rg
 
@@ -56,11 +56,12 @@ public class Game extends Canvas implements Runnable {
         running = true;
 
     }
-    public synchronized void stop(){
-        try{
+
+    public synchronized void stop() {
+        try {
             thread.join();
             running = false;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -74,11 +75,11 @@ public class Game extends Canvas implements Runnable {
         double delta = 0;
         long timer = System.currentTimeMillis();
         frames = 0;
-        while (running){
+        while (running) {
             long now = System.nanoTime();
             delta += (now - lastTime) / ns;
             lastTime = now;
-            while (delta >= 1){
+            while (delta >= 1) {
                 tick();
                 delta--;
             }
@@ -86,7 +87,7 @@ public class Game extends Canvas implements Runnable {
                 render();
             frames++;
 
-            if (System.currentTimeMillis() - timer > 1000){
+            if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
                 System.out.println("FPS: " + frames);
                 frames = 0;
@@ -94,23 +95,25 @@ public class Game extends Canvas implements Runnable {
         }
         stop();
     }
-    private void tick(){
+
+    private void tick() {
         handler.tick();
         hud.tick();
         gamePlay.tick();
         spawner();
     }
-    private void render(){
+
+    private void render() {
         this.requestFocus();
         BufferStrategy bs = this.getBufferStrategy();
-        if (bs == null){
+        if (bs == null) {
             this.createBufferStrategy(3);
             return;
         }
         Graphics g = bs.getDrawGraphics();
 
         g.setColor(Color.black);
-        g.fillRect(0,0,WIDTH, HEIGHT);
+        g.fillRect(0, 0, WIDTH, HEIGHT);
 
         handler.render(g);
         hud.render(g);
@@ -120,19 +123,18 @@ public class Game extends Canvas implements Runnable {
         bs.show();
     }
 
-    private  void spawner(){
-        if (frames == 500){
-            handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH-48),-31, ID.BasicEnemy));
+    private void spawner() {
+        if (frames == 500) {
+            handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 48), -31, ID.BasicEnemy));
         }
     }
 
-    public static int clamp(int var, int min, int max){
-        if (var <= min){
+    public static int clamp(int var, int min, int max) {
+        if (var <= min) {
             return min;
-        }else if (var >= max){
+        } else if (var >= max) {
             return max;
-        }
-        else {
+        } else {
             return var;
         }
     }
@@ -141,7 +143,7 @@ public class Game extends Canvas implements Runnable {
         return frames;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
         new Game();
 

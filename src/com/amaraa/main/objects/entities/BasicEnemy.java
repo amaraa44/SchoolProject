@@ -21,21 +21,22 @@ public class BasicEnemy extends GameObject {
         System.out.println(id + ":" + " X: " + x + ", Y: " + y);
         System.out.println(id + ":" + " Width: " + width + " Height: " + height);
     }
-    public Rectangle getBounds(){
-        return new Rectangle(x,y,width,height);
+
+    public Rectangle getBounds() {
+        return new Rectangle(x, y, width, height);
     }
 
     public void tick() {
 
         handler = new Handler();
 
-        if (y <= Game.HEIGHT){
+        if (y <= Game.HEIGHT) {
             y += SPEED;
         }
     }
 
     public void render(Graphics g) {
         g.setColor(Color.red);
-        g.fillRect(x,y,width,height);
+        g.fillRect(x, y, width, height);
     }
 }

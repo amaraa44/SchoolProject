@@ -22,7 +22,7 @@ public class Player extends GameObject {
     }
 
     public Rectangle getBounds() {
-        return new Rectangle(x,y,width,height);
+        return new Rectangle(x, y, width, height);
     }
 
     public void tick() {
@@ -31,8 +31,8 @@ public class Player extends GameObject {
         y += velY;
 
         // I DON'T UNDERSTAND WHY -48, BUT -48... :/
-        x = Game.clamp(x, 0, Game.WIDTH-48);
-        
+        x = Game.clamp(x, 0, Game.WIDTH - 48);
+
         collision();
 
     }
@@ -41,8 +41,8 @@ public class Player extends GameObject {
         for (int i = 0; i < handler.objects.size(); i++) {
 
             GameObject tempObject = handler.objects.get(i);
-            if (tempObject.getId() == ID.BasicEnemy){
-                if (getBounds().intersects(tempObject.getBounds())){
+            if (tempObject.getId() == ID.BasicEnemy) {
+                if (getBounds().intersects(tempObject.getBounds())) {
                     HUD.HEALTH -= 20;
                     handler.removeObject(tempObject);
                 }
@@ -54,6 +54,6 @@ public class Player extends GameObject {
     public void render(Graphics g) {
 
         g.setColor(Color.white);
-        g.fillRect(x,y,width,height);
+        g.fillRect(x, y, width, height);
     }
 }
