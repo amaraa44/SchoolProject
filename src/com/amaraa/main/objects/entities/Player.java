@@ -12,23 +12,22 @@ public class Player extends GameObject {
 
     public Player(int x, int y, ID id) {
         super(x, y, id);
+
+        System.out.println(id + ":" + " X: " + x + ", Y: " + y);
+        System.out.println(id + ":" + " Width: " + width + " Height: " + height);
     }
-    boolean ize = false;
+
+    public Rectangle getBounds() {
+        return new Rectangle(x,y,width,height);
+    }
+
     public void tick() {
 
         x += velX;
         y += velY;
 
-        if (!ize){
-            System.out.println(id + ":" + " X: " + x + ", Y: " + y);
-            System.out.println(id + ":" + " Width: " + width + " Height: " + height);
-            ize = true;
-        }
-
         // I DON'T UNDERSTAND WHY -48, BUT -48... :/
         x = Game.clamp(x, 0, Game.WIDTH-48);
-
-
 
     }
 

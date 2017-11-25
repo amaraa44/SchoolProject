@@ -96,6 +96,7 @@ public class Game extends Canvas implements Runnable {
         hud.tick();
     }
     private void render(){
+        this.requestFocus();
         BufferStrategy bs = this.getBufferStrategy();
         if (bs == null){
             this.createBufferStrategy(3);

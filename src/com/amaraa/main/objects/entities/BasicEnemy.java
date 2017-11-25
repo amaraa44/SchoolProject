@@ -6,13 +6,11 @@ import com.amaraa.main.objects.Handler;
 import com.amaraa.main.objects.ID;
 
 import java.awt.*;
-import java.util.Random;
 
 public class BasicEnemy extends GameObject {
 
     private int width = 32, height = 32;
 
-    Random r = new Random();
     Handler handler;
 
     public BasicEnemy(int x, int y, ID id) {
@@ -20,13 +18,13 @@ public class BasicEnemy extends GameObject {
 
         velY = 3;
 
-
         System.out.println(id + ":" + " X: " + x + ", Y: " + y);
         System.out.println(id + ":" + " Width: " + width + " Height: " + height);
     }
+    public Rectangle getBounds(){
+        return new Rectangle(x,y,width,height);
+    }
 
-
-//    private boolean test = false;
     public void tick() {
 
         handler = new Handler();
@@ -34,8 +32,6 @@ public class BasicEnemy extends GameObject {
         if (y <= Game.HEIGHT){
             y += SPEED;
         }
-
-
     }
 
     public void render(Graphics g) {
