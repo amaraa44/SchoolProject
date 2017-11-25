@@ -2,7 +2,7 @@ package com.amaraa.main.objects.entities;
 
 import com.amaraa.main.Game;
 import com.amaraa.main.objects.GameObject;
-import com.amaraa.main.objects.Handler;
+import com.amaraa.main.Handler;
 import com.amaraa.main.objects.ID;
 
 import java.awt.*;

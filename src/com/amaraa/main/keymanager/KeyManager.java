@@ -1,7 +1,7 @@
 package com.amaraa.main.keymanager;
 
 import com.amaraa.main.objects.GameObject;
-import com.amaraa.main.objects.Handler;
+import com.amaraa.main.Handler;
 import com.amaraa.main.objects.ID;
 
 import java.awt.event.KeyAdapter;

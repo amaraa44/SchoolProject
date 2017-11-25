@@ -2,8 +2,6 @@ package com.amaraa.main;
 
 import com.amaraa.main.hud.HUD;
 import com.amaraa.main.keymanager.KeyManager;
-import com.amaraa.main.objects.GameObject;
-import com.amaraa.main.objects.Handler;
 import com.amaraa.main.objects.ID;
 import com.amaraa.main.objects.entities.BasicEnemy;
 import com.amaraa.main.objects.entities.Player;
@@ -20,9 +18,11 @@ public class Game extends Canvas implements Runnable {
     private Thread thread;
     private boolean running = false;
     private Random r;
+    private int frames;
 
     private Handler handler;
     private HUD hud;
+    private GamePlay gamePlay;
 
     public Game(){
 
@@ -38,10 +38,12 @@ public class Game extends Canvas implements Runnable {
         r = new Random();
         System.out.println(WIDTH + " " + HEIGHT);
 
-        handler.addObject(new Player(WIDTH/2-32,HEIGHT/5*4-32, ID.Player));
-        for (int i = 0; i < 10; i++) {
-            handler.addObject(new BasicEnemy(r.nextInt(WIDTH-48),-31, ID.BasicEnemy));
-        }
+        gamePlay = new GamePlay(handler, this);
+
+//        handler.addObject(new Player(WIDTH/2-32,HEIGHT/5*4-32, ID.Player, handler));
+//        for (int i = 0; i < 10; i++) {
+//            handler.addObject(new BasicEnemy(r.nextInt(WIDTH-48),-31, ID.BasicEnemy));
+//        }
 //
 //        handler.addObject(new BasicEnemy(r.nextInt(WIDTH-64),-31, ID.BasicEnemy));
 //        handler.addObject(new BasicEnemy(r.nextInt(WIDTH-64),-31, ID.BasicEnemy));
@@ -63,6 +65,7 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
+
     @Override
     public void run() {
         long lastTime = System.nanoTime();
@@ -70,7 +73,7 @@ public class Game extends Canvas implements Runnable {
         double ns = 1000000000 / amountOfTicks;
         double delta = 0;
         long timer = System.currentTimeMillis();
-        int frames = 0;
+        frames = 0;
         while (running){
             long now = System.nanoTime();
             delta += (now - lastTime) / ns;
@@ -94,6 +97,8 @@ public class Game extends Canvas implements Runnable {
     private void tick(){
         handler.tick();
         hud.tick();
+        gamePlay.tick();
+        spawner();
     }
     private void render(){
         this.requestFocus();
@@ -109,9 +114,16 @@ public class Game extends Canvas implements Runnable {
 
         handler.render(g);
         hud.render(g);
+        gamePlay.render(g);
 
         g.dispose();
         bs.show();
+    }
+
+    private  void spawner(){
+        if (frames == 500){
+            handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH-48),-31, ID.BasicEnemy));
+        }
     }
 
     public static int clamp(int var, int min, int max){
@@ -123,6 +135,10 @@ public class Game extends Canvas implements Runnable {
         else {
             return var;
         }
+    }
+
+    public int getFrames() {
+        return frames;
     }
 
     public static void main(String[] args){

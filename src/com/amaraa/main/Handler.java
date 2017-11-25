@@ -1,4 +1,6 @@
-package com.amaraa.main.objects;
+package com.amaraa.main;
+
+import com.amaraa.main.objects.GameObject;
 
 import java.awt.*;
 import java.util.LinkedList;
