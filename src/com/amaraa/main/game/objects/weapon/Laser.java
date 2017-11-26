@@ -3,14 +3,19 @@ package com.amaraa.main.game.objects.weapon;
 import com.amaraa.main.game.Game;
 import com.amaraa.main.game.Handler;
 import com.amaraa.main.game.hud.HUD;
+import com.amaraa.main.game.iamgeLoader.ImageLoader;
 import com.amaraa.main.game.objects.GameObject;
 import com.amaraa.main.game.objects.ID;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class Laser extends GameObject{
 
-    private int width = 16, height = 16;
+    private int width = 8, height = 24;
     private Handler handler;
 
     public Laser(int x, int y, ID id, Handler handler) {
@@ -36,7 +41,6 @@ public class Laser extends GameObject{
         if (y <= 0){
             handler.removeObject(this);
         }
-
         collision();
     }
 
@@ -57,9 +61,14 @@ public class Laser extends GameObject{
 
     }
 
+    private BufferedImage img = ImageLoader.getImage("/images/green_laser.png",this);
+
     public void render(Graphics g) {
-        g.setColor(Color.blue);
-        g.fillRect(x,y,width,height);
+//        imageLoader();
+        g.drawImage(img,x,y,width,height,null);
+
+//        g.setColor(Color.blue);
+//        g.fillRect(x,y,width,height);
     }
 
     public Rectangle getBounds() {

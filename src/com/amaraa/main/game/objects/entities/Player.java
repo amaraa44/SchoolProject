@@ -2,11 +2,15 @@ package com.amaraa.main.game.objects.entities;
 
 import com.amaraa.main.game.Game;
 import com.amaraa.main.game.hud.HUD;
+import com.amaraa.main.game.iamgeLoader.ImageLoader;
 import com.amaraa.main.game.objects.GameObject;
 import com.amaraa.main.game.Handler;
 import com.amaraa.main.game.objects.ID;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class Player extends GameObject {
 
@@ -16,6 +20,8 @@ public class Player extends GameObject {
     public Player(int x, int y, ID id, Handler handler) {
         super(x, y, id);
         this.handler = handler;
+
+//        imageLoader();
 
         System.out.println(id + ":" + " X: " + x + ", Y: " + y);
         System.out.println(id + ":" + " Width: " + width + " Height: " + height);
@@ -34,13 +40,6 @@ public class Player extends GameObject {
         x = Game.clamp(x, 0, Game.WIDTH - 48);
 
         collision();
-        weapon();
-
-    }
-
-    private void weapon() {
-
-
 
     }
 
@@ -58,9 +57,12 @@ public class Player extends GameObject {
         }
     }
 
+    private BufferedImage img = ImageLoader.getImage("/images/x_wing.png",this);
     public void render(Graphics g) {
 
-        g.setColor(Color.white);
-        g.fillRect(x, y, width, height);
+        g.drawImage(img,x,y,width,height,null);
+
+//        g.setColor(Color.white);
+//        g.fillRect(x, y, width, height);
     }
 }

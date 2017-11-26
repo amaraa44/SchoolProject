@@ -35,7 +35,7 @@ public class KeyManager extends KeyAdapter {
                 if (key == KeyEvent.VK_D) tempObject.setVelX(+4);
                 if (key == KeyEvent.VK_A) tempObject.setVelX(-4);
 
-                if (key == KeyEvent.VK_SPACE) handler.addObject(new Laser(tempObject.getX()+8,tempObject.getY(),ID.Laser,handler));
+                if (key == KeyEvent.VK_SPACE) handler.addObject(new Laser(tempObject.getX()+12,tempObject.getY(),ID.Laser,handler));
 
             }
         }

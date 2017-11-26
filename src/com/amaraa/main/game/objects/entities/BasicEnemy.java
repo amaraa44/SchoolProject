@@ -1,11 +1,15 @@
 package com.amaraa.main.game.objects.entities;
 
 import com.amaraa.main.game.Game;
+import com.amaraa.main.game.iamgeLoader.ImageLoader;
 import com.amaraa.main.game.objects.GameObject;
 import com.amaraa.main.game.Handler;
 import com.amaraa.main.game.objects.ID;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class BasicEnemy extends GameObject {
 
@@ -20,6 +24,8 @@ public class BasicEnemy extends GameObject {
 
         System.out.println(id + ":" + " X: " + x + ", Y: " + y);
         System.out.println(id + ":" + " Width: " + width + " Height: " + height);
+
+
     }
 
     public Rectangle getBounds() {
@@ -35,8 +41,12 @@ public class BasicEnemy extends GameObject {
         }
     }
 
+    private BufferedImage img = ImageLoader.getImage("/images/tie.png",this);
+
     public void render(Graphics g) {
-        g.setColor(Color.red);
-        g.fillRect(x, y, width, height);
+        g.drawImage(img,x,y,width,height,null);
+
+//        g.setColor(Color.red);
+//        g.fillRect(x, y, width, height);
     }
 }

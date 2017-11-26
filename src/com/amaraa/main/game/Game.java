@@ -2,12 +2,17 @@ package com.amaraa.main.game;
 
 import com.amaraa.main.Window;
 import com.amaraa.main.game.hud.HUD;
+import com.amaraa.main.game.iamgeLoader.ImageLoader;
 import com.amaraa.main.game.keymanager.KeyManager;
 import com.amaraa.main.game.objects.ID;
 import com.amaraa.main.game.objects.entities.BasicEnemy;
+import com.amaraa.main.game.objects.entities.Player;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.Random;
 
 public class Game extends Canvas implements Runnable {
@@ -22,7 +27,6 @@ public class Game extends Canvas implements Runnable {
 
     private Handler handler;
     private HUD hud;
-    private GamePlay gamePlay;
 
     public Game() {
 
@@ -35,7 +39,7 @@ public class Game extends Canvas implements Runnable {
 
         System.out.println(WIDTH + " " + HEIGHT);
 
-        gamePlay = new GamePlay(handler, this);
+        handler.addObject(new Player(Game.WIDTH / 2 - 32, Game.HEIGHT / 5 * 4 - 32, ID.Player, handler));
 
 
     }
@@ -89,8 +93,11 @@ public class Game extends Canvas implements Runnable {
     private void tick() {
         handler.tick();
         hud.tick();
-        gamePlay.tick();
+        spawnEnemy();
+
     }
+
+    private BufferedImage bgImg = ImageLoader.getImage("/images/star_bg.gif", this);
 
     private void render() {
         this.requestFocus();
@@ -101,12 +108,12 @@ public class Game extends Canvas implements Runnable {
         }
         Graphics g = bs.getDrawGraphics();
 
-        g.setColor(Color.black);
-        g.fillRect(0, 0, WIDTH, HEIGHT);
+        g.drawImage(bgImg, 0, 0, WIDTH, HEIGHT, null);
+//        g.setColor(Color.black);
+//        g.fillRect(0, 0, WIDTH, HEIGHT);
 
         handler.render(g);
         hud.render(g);
-        gamePlay.render(g);
 
         g.dispose();
         bs.show();
@@ -123,8 +130,21 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
-    public int getFrames() {
-        return frames;
+    //TODO: DIFFICULTIES
+    //80 = MEDIUM DIFFICULTY
+    private int difficulty = 80;
+    private int lastSpawnPoint = 0;
+
+    private void spawnEnemy() {
+        Random r = new Random();
+        int random1 = r.nextInt(difficulty);
+        int xSpawnPoint = r.nextInt(Game.WIDTH - 48);
+        while (random1 == 1 && lastSpawnPoint != xSpawnPoint) {
+            handler.addObject(new BasicEnemy(xSpawnPoint, -31, ID.BasicEnemy));
+            lastSpawnPoint = xSpawnPoint;
+            random1 = r.nextInt(difficulty);
+        }
     }
+
 
 }
