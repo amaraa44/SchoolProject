@@ -7,11 +7,11 @@ import java.io.File;
 
 public class ImageLoader {
 
-    public static BufferedImage getImage(String src, Object obj){
-        try{
+    public static BufferedImage getImage(String src, Object obj) {
+        try {
             BufferedImage img = ImageIO.read(obj.getClass().getResourceAsStream(src));
             return img;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;

@@ -6,10 +6,8 @@ import com.amaraa.main.game.objects.GameObject;
 import com.amaraa.main.game.Handler;
 import com.amaraa.main.game.objects.ID;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class BasicEnemy extends GameObject {
 

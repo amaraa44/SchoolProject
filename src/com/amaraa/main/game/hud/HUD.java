@@ -18,9 +18,9 @@ public class HUD {
 
     public void render(Graphics g) {
         g.setColor(Color.green);
-        Font font = new Font("SansSerif",Font.BOLD,16);
+        Font font = new Font("SansSerif", Font.BOLD, 16);
         g.setFont(font);
-        g.drawString("Score: " + SCORE, 375,30);
+        g.drawString("Score: " + SCORE, 375, 30);
 
         g.setColor(Color.gray);
         g.fillRect(10, 10, 200, 24);

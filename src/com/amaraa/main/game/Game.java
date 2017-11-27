@@ -3,16 +3,15 @@ package com.amaraa.main.game;
 import com.amaraa.main.Window;
 import com.amaraa.main.game.hud.HUD;
 import com.amaraa.main.game.iamgeLoader.ImageLoader;
-import com.amaraa.main.game.keymanager.KeyManager;
+import com.amaraa.main.game.gameKeyManager.KeyManager;
 import com.amaraa.main.game.objects.ID;
 import com.amaraa.main.game.objects.entities.BasicEnemy;
 import com.amaraa.main.game.objects.entities.Player;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.Random;
 
 public class Game extends Canvas implements Runnable {
@@ -27,6 +26,8 @@ public class Game extends Canvas implements Runnable {
 
     private Handler handler;
     private HUD hud;
+
+
 
     public Game() {
 
@@ -50,6 +51,7 @@ public class Game extends Canvas implements Runnable {
         running = true;
 
     }
+
 
     public synchronized void stop() {
         try {
@@ -91,9 +93,11 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void tick() {
+
         handler.tick();
         hud.tick();
         spawnEnemy();
+
 
     }
 
@@ -115,9 +119,11 @@ public class Game extends Canvas implements Runnable {
         handler.render(g);
         hud.render(g);
 
+
         g.dispose();
         bs.show();
     }
+
 
 
     public static int clamp(int var, int min, int max) {

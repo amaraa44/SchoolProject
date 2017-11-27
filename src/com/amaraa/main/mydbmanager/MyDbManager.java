@@ -2,6 +2,16 @@ package com.amaraa.main.mydbmanager;
 
 import java.sql.*;
 
+
+/**
+ * MyDbManager.executeSQL("INSERT INTO USERS VALUES(null, 'nev');");
+ * MyDbManager.insertInToUsers("ize");
+ * MyDbManager.deleteFromUsers("nev");
+ * MyDbManager.deleteFromUsers(2);
+ * MyDbManager.updateNameInUsers(3,"nev");
+ * MyDbManager.selectFromUsers(10);
+ * System.out.println(MyDbManager.getUsersName(1));
+ */
 public class MyDbManager {
 
     static final String DB_URL = "jdbc:h2:tcp://localhost//E:\\Projects\\Game/h2db";

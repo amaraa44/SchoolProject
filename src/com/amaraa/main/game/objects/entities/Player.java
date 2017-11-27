@@ -7,10 +7,8 @@ import com.amaraa.main.game.objects.GameObject;
 import com.amaraa.main.game.Handler;
 import com.amaraa.main.game.objects.ID;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class Player extends GameObject {
 
@@ -57,10 +55,11 @@ public class Player extends GameObject {
         }
     }
 
-    private BufferedImage img = ImageLoader.getImage("/images/x_wing.png",this);
+    private BufferedImage img = ImageLoader.getImage("/images/x_wing.png", this);
+
     public void render(Graphics g) {
 
-        g.drawImage(img,x,y,width,height,null);
+        g.drawImage(img, x, y, width, height, null);
 
 //        g.setColor(Color.white);
 //        g.fillRect(x, y, width, height);

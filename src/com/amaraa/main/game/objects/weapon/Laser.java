@@ -1,17 +1,13 @@
 package com.amaraa.main.game.objects.weapon;
 
-import com.amaraa.main.game.Game;
 import com.amaraa.main.game.Handler;
 import com.amaraa.main.game.hud.HUD;
 import com.amaraa.main.game.iamgeLoader.ImageLoader;
 import com.amaraa.main.game.objects.GameObject;
 import com.amaraa.main.game.objects.ID;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 public class Laser extends GameObject{
 
