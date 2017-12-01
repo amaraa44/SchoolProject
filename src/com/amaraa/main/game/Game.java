@@ -34,14 +34,15 @@ public class Game extends Canvas implements Runnable {
     public enum STATE {
         Menu,
         Game,
-        Scores
+        Scores,
+        GameSettings
     }
 
     public STATE gameState = STATE.Menu;
 
     public Game() {
 
-
+        new MyDbManager();
 
         window = new Window(WIDTH, HEIGHT, "Space shooter", this);
 

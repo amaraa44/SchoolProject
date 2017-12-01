@@ -6,6 +6,7 @@ import com.amaraa.main.game.Handler;
 import com.amaraa.main.game.hud.HUD;
 import com.amaraa.main.game.objects.ID;
 import com.amaraa.main.game.objects.entities.Player;
+import com.amaraa.main.mydbmanager.MyDbManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,9 +21,6 @@ public class Menu extends MouseAdapter {
     private Game game;
     private Handler handler;
 
-    private int my;
-    private int mx;
-
     public Menu(Game game, Handler handler) {
         this.game = game;
         this.handler = handler;
@@ -30,8 +28,8 @@ public class Menu extends MouseAdapter {
 
     public void mousePressed(MouseEvent e) {
 
-        my = e.getY();
-        mx = e.getX();
+        int my = e.getY();
+        int mx = e.getX();
 
         if (game.gameState == Game.STATE.Menu){
             // MOUSE OVER PLAYER
@@ -58,6 +56,16 @@ public class Menu extends MouseAdapter {
                 game.gameState = Game.STATE.Menu;
             }
         }
+        if (game.gameState == Game.STATE.GameSettings){
+            //TODO: DIFFICULTIES
+            // MOUSE OVER HARD
+
+            // MOUSE OVER MEDIUM
+
+            // MOUSE OVER EASY
+
+            // MOUSE OVER START GAME
+        }
 
 
     }
@@ -67,11 +75,7 @@ public class Menu extends MouseAdapter {
         super.mouseReleased(e);
     }
 
-    private boolean mouseOverPlay;
     public void tick(){
-        if (mouseOver(mx,my,Game.WIDTH / 2 - 100, 100, 200,50)){
-            mouseOverPlay = true;
-        }else mouseOverPlay = false;
 
     }
 
@@ -83,6 +87,22 @@ public class Menu extends MouseAdapter {
             }else return false;
         }else return false;
     }
+
+    public void mouseEntered(MouseEvent e) {
+        int mx = e.getX();
+        int my = e.getY();
+        if (game.gameState == Game.STATE.Menu) {
+            // MOUSE OVER PLAYER
+            if (mouseOver(mx, my, Game.WIDTH / 2 - 100, 100, 200, 50)) {
+                System.out.println(e);
+            }
+        }
+    }
+
+    public void mouseExited(MouseEvent e) {
+
+    }
+
     public void render(Graphics g){
         if (game.gameState == Game.STATE.Menu){
             g.setColor(swYellow);
@@ -107,6 +127,8 @@ public class Menu extends MouseAdapter {
             //QUIT BUTTON
             g.drawRect(Game.WIDTH / 2 - 100, 250, 200,50);
             g.drawString("QUIT", Game.WIDTH / 2 - 30, 285);
+
+        //SCORE STATE
         }else if(game.gameState == Game.STATE.Scores){
             g.setColor(swYellow);
             Font fnt = new Font("arial", Font.BOLD, 30);
@@ -119,22 +141,17 @@ public class Menu extends MouseAdapter {
 
 
             //TODO: SELECT THE SCORES
-            ArrayList<Integer> scores = new ArrayList<>();
-            scores.add(20);
-            scores.add(20);
-            scores.add(20);
-            scores.add(20);
-            scores.add(20);
-            scores.add(20);
-            scores.add(20);
-            scores.add(20);
-            scores.add(20);
-            scores.add(20);
-            scores.add(20);
-            scores.add(20);
-            scores.add(20);
-            for (int i = 1; i < 11; i++) {
-                g.drawString(i + ". " + scores.get(i-1), Game.WIDTH / 2 - 30, 60 + i*24);
+            ArrayList<String> scores = MyDbManager.selectScores();
+            for (int i = 0; i < scores.size(); i++) {
+                if (i >= 9){
+                    g.drawString((i+1) + ". " + scores.get(i), Game.WIDTH / 2 - 40, 80 + i*24);
+                }else if (i <= 2){
+                    g.setColor(Color.green);
+                    g.drawString((i + 1) + ". " + scores.get(i), Game.WIDTH / 2 - 30, 80 + i * 24);
+                }else{
+                    g.setColor(swYellow);
+                    g.drawString((i + 1) + ". " + scores.get(i), Game.WIDTH / 2 - 30, 80 + i * 24);
+                }
             }
             //BACK BUTTON
             g.drawRect(Game.WIDTH - 125, Game.HEIGHT - 100, 100,40);
