@@ -9,9 +9,12 @@ public class HUD {
     public static int HEALTH = 100;
     public static int SCORE = 0;
 
+    private int greenV = 255;
+
     public void tick() {
 
         HEALTH = Game.clamp(HEALTH, 0, 100);
+        greenV = HEALTH * 2;
 
 
     }
@@ -25,7 +28,7 @@ public class HUD {
         g.setColor(Color.gray);
         g.fillRect(10, 10, 200, 24);
 
-        g.setColor(Color.green);
+        g.setColor(new Color(75,greenV,0));
         g.fillRect(10, 10, HEALTH * 2, 24);
 
         g.setColor(Color.white);

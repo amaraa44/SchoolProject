@@ -37,6 +37,10 @@ public class BasicEnemy extends GameObject {
         if (y <= Game.HEIGHT) {
             y += SPEED;
         }
+
+        if (y >= Game.HEIGHT){
+            handler.removeObject(this);
+        }
     }
 
     private BufferedImage img = ImageLoader.getImage("/images/tie.png",this);
@@ -44,7 +48,5 @@ public class BasicEnemy extends GameObject {
     public void render(Graphics g) {
         g.drawImage(img,x,y,width,height,null);
 
-//        g.setColor(Color.red);
-//        g.fillRect(x, y, width, height);
     }
 }

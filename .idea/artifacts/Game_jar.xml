@@ -3,7 +3,7 @@
     <output-path>$PROJECT_DIR$/Build/Game_jar</output-path>
     <root id="archive" name="Game.jar">
       <element id="module-output" name="Game" />
-      <element id="extracted-dir" path="$USER_HOME$/Desktop/Dev/h2/bin/h2-1.4.196.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/h2/bin/h2-1.4.196.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
