@@ -1,18 +1,21 @@
 package com.amaraa.main.game.states;
 
-import com.amaraa.main.Window;
 import com.amaraa.main.game.Game;
 import com.amaraa.main.game.Handler;
-import com.amaraa.main.game.hud.HUD;
 import com.amaraa.main.game.objects.ID;
 import com.amaraa.main.game.objects.entities.Player;
 import com.amaraa.main.mydbmanager.MyDbManager;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+
+import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
 
 public class Menu extends MouseAdapter {
 
@@ -21,9 +24,18 @@ public class Menu extends MouseAdapter {
     private Game game;
     private Handler handler;
 
+    private String text = "";
+
     public Menu(Game game, Handler handler) {
         this.game = game;
         this.handler = handler;
+
+        addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                System.out.println("Pressed");
+            }
+        });
+
     }
 
     public void mousePressed(MouseEvent e) {
@@ -58,11 +70,11 @@ public class Menu extends MouseAdapter {
         }
         if (game.gameState == Game.STATE.GameSettings){
             //TODO: DIFFICULTIES
-            // MOUSE OVER HARD
+            // MOUSE OVER EASY
 
             // MOUSE OVER MEDIUM
 
-            // MOUSE OVER EASY
+            // MOUSE OVER HARD
 
             // MOUSE OVER START GAME
         }
@@ -75,16 +87,17 @@ public class Menu extends MouseAdapter {
         super.mouseReleased(e);
     }
 
+
+
     public void tick(){
+
 
     }
 
 
     private boolean mouseOver(int mx, int my, int x, int y, int width, int height){
         if (mx > x && mx < x + width){
-            if (my > y && my < y + height){
-                return true;
-            }else return false;
+            return my > y && my < y + height;
         }else return false;
     }
 
@@ -99,9 +112,6 @@ public class Menu extends MouseAdapter {
         }
     }
 
-    public void mouseExited(MouseEvent e) {
-
-    }
 
     public void render(Graphics g){
         if (game.gameState == Game.STATE.Menu){
@@ -127,6 +137,14 @@ public class Menu extends MouseAdapter {
             //QUIT BUTTON
             g.drawRect(Game.WIDTH / 2 - 100, 250, 200,50);
             g.drawString("QUIT", Game.WIDTH / 2 - 30, 285);
+
+            //input.setBounds(Game.WIDTH / 2 - 100, 325, 200,50);
+            //input.setBackground(Color.green);
+
+            g.drawRect(Game.WIDTH / 2 - 100, 325, 200,50);
+            g.drawString(text, Game.WIDTH / 2 - 30, 360);
+
+
 
         //SCORE STATE
         }else if(game.gameState == Game.STATE.Scores){

@@ -13,12 +13,14 @@ import java.awt.event.KeyEvent;
 public class KeyManager extends KeyAdapter {
 
     private Handler handler;
+    private Game game;
 
     private boolean[] keyDown = new boolean[4];
 
 
-    public KeyManager(Handler handler) {
+    public KeyManager(Handler handler, Game game) {
         this.handler = handler;
+        this.game = game;
 
         keyDown[0] = false;
         keyDown[1] = false;
@@ -27,25 +29,32 @@ public class KeyManager extends KeyAdapter {
     }
 
     public void keyPressed(KeyEvent e) {
-        int key = e.getKeyCode();
+        if (game.gameState == Game.STATE.Game){
+            int key = e.getKeyCode();
 
-        for (int i = 0; i < handler.objects.size(); i++) {
-            GameObject tempObject = handler.objects.get(i);
+            for (int i = 0; i < handler.objects.size(); i++) {
+                GameObject tempObject = handler.objects.get(i);
 
-            if (tempObject.getId() == ID.Player) {
-                if (key == KeyEvent.VK_D) { tempObject.setVelX(+4); keyDown[0] = true; }
-                if (key == KeyEvent.VK_A) { tempObject.setVelX(-4); keyDown[1] = true; }
+                if (tempObject.getId() == ID.Player) {
+                    if (key == KeyEvent.VK_D) { tempObject.setVelX(+4); keyDown[0] = true; }
+                    if (key == KeyEvent.VK_A) { tempObject.setVelX(-4); keyDown[1] = true; }
 //                if (key == KeyEvent.VK_W) { tempObject.setVelY(-4); keyDown[2] = true; }
 //                if (key == KeyEvent.VK_S) { tempObject.setVelY(+4); keyDown[3] = true; }
 
-                if (key == KeyEvent.VK_SPACE)
-                    //TODO: WE NEED TO REFINE IT
-                    handler.addObject(new Laser(tempObject.getX() + 12, tempObject.getY(), ID.Laser, handler));
+                    if (key == KeyEvent.VK_SPACE)
+                        //TODO: WE NEED TO REFINE IT
+                        handler.addObject(new Laser(tempObject.getX() + 12, tempObject.getY(), ID.Laser, handler));
 
+                }
             }
         }
 
+
+
+
     }
+
+
 
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();

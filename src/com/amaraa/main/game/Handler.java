@@ -2,7 +2,7 @@ package com.amaraa.main.game;
 
 import com.amaraa.main.game.objects.GameObject;
 
-import java.awt.*;
+import java.awt.Graphics;
 import java.util.LinkedList;
 
 public class Handler {

@@ -11,7 +11,8 @@ import com.amaraa.main.game.objects.entities.Player;
 import com.amaraa.main.game.states.Menu;
 import com.amaraa.main.mydbmanager.MyDbManager;
 
-import java.awt.*;
+import java.awt.Canvas;
+import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.util.Random;
@@ -20,7 +21,7 @@ public class Game extends Canvas implements Runnable {
 
     //4:3 aspect ratio
 //    public static final int HEIGHT = 360, WIDTH = HEIGHT / 3 * 4;
-    public static final int WIDTH = 480, HEIGHT = 360;
+    public static final int WIDTH = 640, HEIGHT = 480;
     private Window window;
     private Thread thread;
     private boolean running = false;
@@ -49,7 +50,7 @@ public class Game extends Canvas implements Runnable {
         handler = new Handler();
         menu = new Menu(this,handler);
         this.addMouseListener(menu);
-        this.addKeyListener(new KeyManager(handler));
+        this.addKeyListener(new KeyManager(handler,this));
 
         hud = new HUD();
 
@@ -129,6 +130,7 @@ public class Game extends Canvas implements Runnable {
                 if (HUD.SCORE > 0){
                     MyDbManager.addScore(HUD.SCORE);
                     System.out.println("Score added to the database. Score: " + HUD.SCORE);
+                    HUD.SCORE = 0;
                 }else{
                     System.out.println("Score is less than 0.");
                 }

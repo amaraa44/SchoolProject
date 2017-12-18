@@ -2,7 +2,9 @@ package com.amaraa.main.game.hud;
 
 import com.amaraa.main.game.Game;
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Color;
+import java.awt.Font;
 
 public class HUD {
 
