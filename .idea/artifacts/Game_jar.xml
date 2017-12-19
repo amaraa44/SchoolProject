@@ -4,6 +4,7 @@
     <root id="archive" name="Game.jar">
       <element id="module-output" name="Space shooter" />
       <element id="extracted-dir" path="$PROJECT_DIR$/libs/h2/bin/h2-1.4.196.jar" path-in-jar="/" />
+      <element id="library" level="project" name="h2-1.4.196" />
     </root>
   </artifact>
 </component>
