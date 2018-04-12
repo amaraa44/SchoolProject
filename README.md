@@ -1,7 +1,10 @@
 # SchoolProject
 
-Key Binding: 
-  Go left - A
-  Go right - D
-  Shoot - Space
+<h4>Key binding:</h4>
+<ul>
+  <li>Go left - A </li>
+  <li>Go right - D </li>
+  <li>Shoot - Space</li>
+</ul>
+
  
