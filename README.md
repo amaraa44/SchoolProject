@@ -1,4 +1,4 @@
-# SchoolProject
+# SpaceShooter
 
 <h4>Key binding:</h4>
 <ul>
